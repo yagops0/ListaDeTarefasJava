@@ -3,6 +3,7 @@ package com.yagos;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 import com.DAO.TarefaDAO;
 import com.classes.Tarefa;
@@ -19,26 +20,28 @@ public class ListaDeTarefas
     {
         Tarefa t = new Tarefa();
         ListaDeTarefas ldt = new ListaDeTarefas();
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-        Date data = ldt.formatarData("2024/03/28");
+        //SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+        String dataS;
+        Scanner ent = new Scanner(System.in);
+        TarefaDAO td = new TarefaDAO();
+
 
         
-        //t.setId(1);
-        //t.setDescricao("Jogar lixo");
-        //t.setPrioridade(1);
-        //t.setStatus(2); 
-        //t.setDataConclusao(data);
-
-        t.setDescricao("Estudar");
-        t.setPrioridade(0);
-        t.setStatus(2);
-        t.setDataConclusao(data);
-
         
        
-        new TarefaDAO().cadastrarTarefa(t);
         
 
+    }
+
+    private void linha()
+    {
+        System.out.println("==============================================================");
+    }
+
+    private void menu()
+    {
+        linha();
+        System.out.println("1 - ");
     }
 
     private Date formatarData(String data)
