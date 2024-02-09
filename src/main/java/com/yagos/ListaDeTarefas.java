@@ -25,13 +25,16 @@ public class ListaDeTarefas
         Scanner ent = new Scanner(System.in);
         TarefaDAO td = new TarefaDAO();
 
-
-        
-        
-       
+        t = td.consultarTarefa(4);
+        System.out.println("Id: " + t.getId());
+        System.out.println("Descrição: " + t.getDescricao());
+        System.out.println("Prioridade: " + t.getPrioridade());
+        System.out.println("Status: " + t.getStatus());
+        System.out.println("Data de Conclusão: " + t.getDataConclusao());
         
 
     }
+
 
     private void linha()
     {

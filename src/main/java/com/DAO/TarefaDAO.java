@@ -86,26 +86,6 @@ public class TarefaDAO
         }
     }
 
-    public Tarefa consultarTarefa(int id)
-    {
-        String sql = "SELECT tarefa.id, tarefa.descricao, tarefa.prioridade, tarefa.status, tarefa.dataConclusao " + "FROM tarefas WHERE id = ?";
-
-        PreparedStatement ps = null;
-        
-        ResultSet rst = null;
-
-        /*Fazer uma lista que retorne os dados e depois percorrer essa lista, porém mostrar
-         * apenas a tarefa com o id específicado.
-        */
-
-        try 
-        {
-            
-        } 
-        catch (SQLException e) {
-            System.out.println("Não foi possível consultar a tarefa.");
-        }
-    }
 
     public List<Tarefa> retornarTarefas()
     {
@@ -149,4 +129,46 @@ public class TarefaDAO
         return tarefas;
 
     }
+
+    public Tarefa consultarTarefa(int id1)
+    {
+        String sql = "SELECT *  FROM tarefas WHERE id = ?";
+
+        PreparedStatement ps = null;
+        
+        ResultSet rst = null;
+
+        Tarefa tar = new Tarefa();
+
+        try 
+        {
+            ps = Conexao.getConexao().prepareStatement(sql);
+            ps.setInt(1, id1);
+
+            rst = ps.executeQuery();
+
+            if(rst.next())
+            {
+                tar.setId(rst.getInt("id"));
+                tar.setDescricao(rst.getString("descricao"));
+                tar.setPrioridade(rst.getInt("prioridade"));
+                tar.setStatus(rst.getInt("status"));
+                tar.setDataConclusao(rst.getDate("dataConclusao"));
+
+                return tar;
+
+            }
+            else
+            {
+                return null;
+            }
+
+        } 
+        catch (SQLException e) 
+        {
+           e.printStackTrace();
+            return null;
+        }
+    }
+
 }
