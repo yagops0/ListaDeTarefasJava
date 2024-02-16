@@ -170,77 +170,81 @@ public class TarefaDAO
             return null;
         }
     }
-
-    public List<Tarefa> filtrarTarefas()
+    
+    public List<Tarefa> prioridadeFilter(int filtroNum)
     {
-        //String sql =  "SELECT * FROM tarefas WHERE ? = ?";
-
-        Tarefa t = new Tarefa();
-
+        String sql = "SELECT * FROM tarefas WHERE prioridade = ?";
         PreparedStatement ps = null;
-
         ResultSet rst = null;
+        
 
-        try
+        List<Tarefa> priorFilter = new ArrayList<>(); 
+
+        try 
         {
-                List<Tarefa> tPrioridades = new ArrayList<>();
+            ps = Conexao.getConexao().prepareStatement(sql);
+            ps.setInt(1, filtroNum);
 
-                String sql = "SELECT * FROM tarefas WHERE prioridade = ?";
-                
-                ps = Conexao.getConexao().prepareStatement(sql);
-                
-                ps.setInt(1, t.getPrioridade());
+            rst = ps.executeQuery();
 
-                rst = ps.executeQuery();
-
-                if(t.getPrioridade() == 0)
+            if(filtroNum == 0)
+            {
+                while(rst.next())
                 {
-                    while(rst.next()) //rst.next() percorre até não ter mais nenhum dado no banco
-                    {
+                    Tarefa t = new Tarefa();
 
-                        t.setId(rst.getInt("id"));
-                        t.setDescricao(rst.getString("descricao"));
-                        t.setPrioridade(rst.getInt("prioridade"));
-                        t.setStatus(rst.getInt("status"));
-                        t.setDataConclusao(rst.getDate("dataConclusao"));
+                    t.setId(rst.getInt("id"));
+                    t.setDescricao(rst.getString("descricao"));
+                    t.setPrioridade(rst.getInt("prioridade"));
+                    t.setStatus(rst.getInt("status"));
+                    t.setDataConclusao(rst.getDate("dataConclusao"));
 
-                        tPrioridades.add(t);
-
-                    }
-
-                    return tPrioridades;
-                }
-                else if(t.getPrioridade() == 1)
-                {
-                    while(rst.next()) //rst.next() percorre até não ter mais nenhum dado no banco
-                    {
-
-                        t.setId(rst.getInt("id"));
-                        t.setDescricao(rst.getString("descricao"));
-                        t.setPrioridade(rst.getInt("prioridade"));
-                        t.setStatus(rst.getInt("status"));
-                        t.setDataConclusao(rst.getDate("dataConclusao"));
-
-                        tPrioridades.add(t);
-
-                    }
-
-                    return tPrioridades;
+                    priorFilter.add(t);
                 }
 
-                ps.close();
-                rst.close();
+                return priorFilter;
+            }
+            else if(filtroNum == 1)
+            {
+                while(rst.next())
+                {
+                    Tarefa t = new Tarefa();
 
-                return null;       
-        }
-        catch(SQLException e)
-        {
-            System.out.println("Não foi possível procurar por essas tarefas.");
+                    t.setId(rst.getInt("id"));
+                    t.setDescricao(rst.getString("descricao"));
+                    t.setPrioridade(rst.getInt("prioridade"));
+                    t.setStatus(rst.getInt("status"));
+
+                    priorFilter.add(t);
+
+                }
+
+                return priorFilter;
+            }
+            else
+            {
+                return null;
+            }
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
             return null;
         }
-
-
-
+        finally
+        {
+            try
+            {
+                rst.close();
+                ps.close();
+            }
+            catch(SQLException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        
     }
+
+
 
 }

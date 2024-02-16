@@ -16,7 +16,7 @@ import com.classes.Tarefa;
 
 public class ListaDeTarefas 
 {
-    public static void main( String[] args )
+    public static void main( String[] args)
     {
         Tarefa t = new Tarefa();
         ListaDeTarefas ldt = new ListaDeTarefas();
@@ -24,6 +24,12 @@ public class ListaDeTarefas
         String dataS;
         Scanner ent = new Scanner(System.in);
         TarefaDAO td = new TarefaDAO();
+
+        for(Tarefa tr : td.prioridadeFilter(1))
+        {
+            System.out.println("Desc: " + tr.getDescricao());
+        }
+        
 
 
     }
