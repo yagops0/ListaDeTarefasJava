@@ -245,6 +245,40 @@ public class TarefaDAO
         
     }
 
+    public List<Tarefa> statusFilter(int filtroNum)
+    {
+        String sql = "SELECT * FROM tarefas WHERE status = ?";
+
+        PreparedStatement ps = null;
+
+        ResultSet rst = null;
+
+        List<Tarefa> statFilter = new ArrayList<>();
+
+        try 
+        {
+            ps = Conexao.getConexao().prepareStatement(sql);
+        } 
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            try 
+            {
+                rst.close();
+                ps.close();
+            } 
+            catch (SQLException e) 
+            {
+                e.printStackTrace();
+            }
+            
+        }
+
+    }
+
 
 
 }
