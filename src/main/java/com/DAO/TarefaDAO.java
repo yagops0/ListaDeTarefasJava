@@ -258,10 +258,70 @@ public class TarefaDAO
         try 
         {
             ps = Conexao.getConexao().prepareStatement(sql);
+            ps.setInt(1, filtroNum);
+
+            rst = ps.executeQuery();
+
+            if(filtroNum == 0)
+            {
+                while(rst.next())
+                {
+                    Tarefa t = new Tarefa();
+
+                    t.setId(rst.getInt("id"));
+                    t.setDescricao(rst.getString("descricao"));
+                    t.setPrioridade(rst.getInt("prioridade"));
+                    t.setStatus(rst.getInt("status"));
+                    t.setDataConclusao(rst.getDate("dataConclusao"));
+
+                    statFilter.add(t);
+                }
+                
+                return statFilter;
+            }
+            else if(filtroNum == 1)
+            {
+                while(rst.next()) 
+                {
+                    Tarefa t = new Tarefa();
+
+                    t.setId(rst.getInt("id"));
+                    t.setDescricao(rst.getString("descricao"));
+                    t.setPrioridade(rst.getInt("prioridade"));
+                    t.setStatus(rst.getInt("status"));
+                    t.setDataConclusao(rst.getDate("dataConclusao"));
+
+                    statFilter.add(t);
+                }
+
+                return statFilter;
+            }
+            else if(filtroNum == 2)
+            {
+                while(rst.next())
+                {
+                    Tarefa t = new Tarefa();
+
+                    t.setId(rst.getInt("id"));
+                    t.setDescricao(rst.getString("descricao"));
+                    t.setPrioridade(rst.getInt("prioridade"));
+                    t.setStatus(rst.getInt("status"));
+                    t.setDataConclusao(rst.getDate("dataConclusao"));
+
+                    statFilter.add(t);
+                }
+
+                return statFilter;
+            }
+            else
+            {
+                return null;
+            }
         } 
         catch (SQLException e) 
         {
             e.printStackTrace();
+            return null;
         }
         finally
         {
@@ -277,6 +337,85 @@ public class TarefaDAO
             
         }
 
+    }
+
+    public List<Tarefa> dateFilter(int num)
+    {
+        List<Tarefa> listaTarefas = new ArrayList<>();
+
+        PreparedStatement ps = null;
+
+        ResultSet rst = null;
+
+        try 
+        {
+            if(num == 0)
+            {
+                String sql = "SELECT * FROM tarefas ORDER BY dataConclusao ASC";
+
+                ps = Conexao.getConexao().prepareStatement(sql);
+                rst = ps.executeQuery();
+
+                while(rst.next())
+                {
+                    Tarefa t = new Tarefa();
+
+                    t.setId(rst.getInt("id"));
+                    t.setDescricao(rst.getString("descricao"));
+                    t.setPrioridade(rst.getInt("prioridade"));
+                    t.setStatus(rst.getInt("status"));
+                    t.setDataConclusao(rst.getDate("dataConclusao"));
+
+                    listaTarefas.add(t);
+                }
+
+                return listaTarefas;
+
+            }
+            else if(num == 1)
+            {
+                String sql = "SELECT * FROM tarefas ORDER BY dataConclusao DESC";
+
+                ps = Conexao.getConexao().prepareStatement(sql);
+                rst = ps.executeQuery();
+
+                while(rst.next())
+                {
+                    Tarefa t = new Tarefa();
+
+                    t.setId(rst.getInt("id"));
+                    t.setDescricao(rst.getString("descricao"));
+                    t.setPrioridade(rst.getInt("prioridade"));
+                    t.setStatus(rst.getInt("status"));
+                    t.setDataConclusao(rst.getDate("dataConclusao"));
+
+                    listaTarefas.add(t);
+                }
+
+                return listaTarefas;
+            }
+            else
+            {
+                return null;
+            }
+        } 
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+            return null;
+        }
+        finally
+        {
+            try 
+            {
+                rst.close();
+                ps.close();
+            } 
+            catch (SQLException e) 
+            {
+                e.printStackTrace();
+            }
+        }
     }
 
 
