@@ -49,40 +49,111 @@ public class ListaDeTarefas
                 {
                     case 1:
                     {
-                        ldt.espera();
-                        System.out.println("= CRIAR TAREFA");
-                        menu.linha();
-                        ldt.espera();
-                        System.out.print("Digite a descricao da tarefa: ");
-                        t.setDescricao(ent.nextLine());
-                        menu.linha();
-                        ldt.espera();
-                        System.out.print("Digite a prioridade da tarefa(0 - Normal/ 1 - Importante): ");
-                        t.setPrioridade(ent.nextInt());
-                        ent.nextLine();
-                        menu.linha();
-                        ldt.espera();
-                        System.out.print("Digite o status da tarefa(0 - A iniciar / 1 - Em andamento / 2 - Concluída): ");
-                        t.setStatus(ent.nextInt());
-                        ent.nextLine();
-                        menu.linha();
-                        ldt.espera();
-                        System.out.print("Digite a data de conclusão da tarefa(no formato aaaa/mm/dd): ");
-                        data = ent.nextLine();
-                        t.setDataConclusao(ldt.formatarData(data));
-                        menu.linha();
-                        ldt.espera();
+                        do 
+                        {
+                            ldt.espera();
+                            System.out.println("= CRIAR TAREFA");
+                            menu.linha();
+                            ldt.espera();
+                            System.out.print("- Digite a descrição da tarefa: ");
+                            t.setDescricao(ent.nextLine());
+                            menu.linha();
+                            ldt.espera();
+                            System.out.print("- Digite a prioridade da tarefa(0 - Normal/ 1 - Importante): ");
+                            t.setPrioridade(ent.nextInt());
+                            ent.nextLine();
+                            menu.linha();
+                            ldt.espera();
+                            System.out.print("- Digite o status da tarefa(0 - A iniciar / 1 - Em andamento / 2 - Concluída): ");
+                            t.setStatus(ent.nextInt());
+                            ent.nextLine();
+                            menu.linha();
+                            ldt.espera();
+                            System.out.print("- Digite a data de conclusão da tarefa(no formato aaaa/mm/dd): ");
+                            data = ent.nextLine();
+                            t.setDataConclusao(ldt.formatarData(data));
+                            menu.linha();
+                            ldt.espera();
 
-                        td.cadastrarTarefa(t);
+                            td.cadastrarTarefa(t);
 
-                        ldt.espera();
-                        System.out.println("TAREFA CRIADA COM SUCESSO!");
-                        menu.linha();
-                        ldt.espera();
+                            ldt.espera();
+                            System.out.println("- TAREFA CRIADA COM SUCESSO!");
+                            menu.linha();
+                            ldt.espera();
+
+                            System.out.println("- Deseja criar mais uma tarefa(S/N)?");
+                            continuar = ent.nextLine().charAt(0);
+                            menu.linha();
+                        } while(Character.toLowerCase(continuar) != 'n');
                         break;
                     }
                     case 2:
-                    {
+                    {  
+                        do 
+                        {
+                            System.out.println("= TAREFAS");
+                            menu.linha();
+                            ldt.espera();
+                            for(Tarefa tf : td.retornarTarefas())
+                            {
+                                System.out.println(" -Id: " + tf.getId());
+                                System.out.println("- Descrição: " + tf.getDescricao());
+                                System.out.println("- Prioridade(0 - Normal / 1 - Importante): " + tf.getPrioridade());
+                                System.out.println("- Status(0 - A Iniciar / 1 - Em andamento / 2 - Concluída): " + tf.getStatus());
+                                System.out.println("- Data de Conclusão: " + tf.getDataConclusao());
+                                menu.linha();
+                                ldt.espera();
+
+                            }
+                            System.out.println("= ATUALIZAR TAREFA");
+                            menu.linha();
+                            ldt.espera();
+                            System.out.print("- Digite a descrição atualizada: ");
+                            t.setDescricao(ent.nextLine());
+                            menu.linha();
+                            ldt.espera();
+                            System.out.print("- Digite a prioridade atualizada: ");
+                            t.setPrioridade(ent.nextInt());
+                            menu.linha();
+                            ldt.espera();
+                            System.out.print("- Digite o status atualizado: ");
+                            t.setStatus(ent.nextInt());
+                            ent.nextLine();
+                            menu.linha();
+                            ldt.espera();
+                            System.out.print("- Digite a data atualizada(formato aaaa/mm/dd): ");
+                            data = ent.nextLine();
+                            t.setDataConclusao(ldt.formatarData(data));
+                            menu.linha();
+                            ldt.espera();
+                            System.out.print("- Digite o id da tarefa que deseja atualizar: ");
+                            t.setId(ent.nextInt());
+                            ent.nextLine();
+                            menu.linha();
+                            ldt.espera();
+                            td.atualizarTarefas(t);
+                            ldt.espera();
+                            System.out.println("- Tarefa ataualizada com sucesso!!");
+                            menu.linha();
+                            ldt.espera();
+                            System.out.println("= TAREFA ATUALIZADA");
+                            menu.linha();
+                            ldt.espera();
+                            td.consultarTarefa(t.getId());
+                            System.out.println("- Id: " + t.getId());
+                            System.out.println("- Descricao: " + t.getDescricao());
+                            System.out.println("- Prioridade: " + t.getPrioridade());
+                            System.out.println("- Status: " + t.getStatus());
+                            System.out.printf("- Data de Conclusão: %tY/%tm/%td\n", t.getDataConclusao(), t.getDataConclusao(), t.getDataConclusao());
+                            menu.linha();
+                            ldt.espera();
+                            
+                            System.out.println("Deseja atualizar mais uma tarefa(S/N)?");
+                            continuar = ent.nextLine().charAt(0);
+                            menu.linha();
+                            ldt.espera();
+                        }while(Character.toLowerCase(continuar) != 'n');
 
                         break;
                     }
@@ -148,6 +219,7 @@ public class ListaDeTarefas
             e.printStackTrace();
         }
     }
+
 }
 
 
