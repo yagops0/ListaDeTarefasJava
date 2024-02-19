@@ -349,7 +349,7 @@ public class TarefaDAO
 
         try 
         {
-            if(num == 0)
+            if(num == 3)
             {
                 String sql = "SELECT * FROM tarefas ORDER BY dataConclusao ASC";
 
@@ -372,7 +372,7 @@ public class TarefaDAO
                 return listaTarefas;
 
             }
-            else if(num == 1)
+            else if(num == 4)
             {
                 String sql = "SELECT * FROM tarefas ORDER BY dataConclusao DESC";
 
