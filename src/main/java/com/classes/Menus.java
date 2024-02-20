@@ -9,7 +9,6 @@ public class Menus
 
     public void menu()
     {
-        linha();
         System.out.println("1 - Criar tarefa");
         System.out.println("2 - Atualizar tarefa");
         System.out.println("3 - Consultar tarefa");

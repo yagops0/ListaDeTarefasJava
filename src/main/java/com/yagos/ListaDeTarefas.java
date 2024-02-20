@@ -27,6 +27,7 @@ public class ListaDeTarefas
         int escolha, escolhaFiltros, escolhaPrioridade, escolhaStatus;
         char continuar;
         String data;
+        int idConsult;
 
         ldt.espera();
         menu.linha();
@@ -90,6 +91,9 @@ public class ListaDeTarefas
                     }
                     case 2:
                     {  
+                        System.out.println("= ATUALIZAR TAREFA");
+                        menu.linha();
+                       ldt.espera();
                         do 
                         {
                             System.out.println("= TAREFAS");
@@ -106,9 +110,6 @@ public class ListaDeTarefas
                                 ldt.espera();
 
                             }
-                            System.out.println("= ATUALIZAR TAREFA");
-                            menu.linha();
-                            ldt.espera();
                             System.out.print("- Digite a descrição atualizada: ");
                             t.setDescricao(ent.nextLine());
                             menu.linha();
@@ -120,26 +121,33 @@ public class ListaDeTarefas
                             System.out.print("- Digite o status atualizado: ");
                             t.setStatus(ent.nextInt());
                             ent.nextLine();
+
                             menu.linha();
                             ldt.espera();
+
                             System.out.print("- Digite a data atualizada(formato aaaa/mm/dd): ");
                             data = ent.nextLine();
                             t.setDataConclusao(ldt.formatarData(data));
                             menu.linha();
                             ldt.espera();
+
                             System.out.print("- Digite o id da tarefa que deseja atualizar: ");
                             t.setId(ent.nextInt());
                             ent.nextLine();
+
                             menu.linha();
                             ldt.espera();
                             td.atualizarTarefas(t);
                             ldt.espera();
-                            System.out.println("- Tarefa ataualizada com sucesso!!");
+
+                            System.out.println("- Tarefa atualizada com sucesso!!");
                             menu.linha();
                             ldt.espera();
+
                             System.out.println("= TAREFA ATUALIZADA");
                             menu.linha();
                             ldt.espera();
+
                             td.consultarTarefa(t.getId());
                             System.out.println("- Id: " + t.getId());
                             System.out.println("- Descricao: " + t.getDescricao());
@@ -159,6 +167,45 @@ public class ListaDeTarefas
                     }
                     case 3:
                     {
+                        do 
+                        {
+                            System.out.println("= CONSULTAR TAREFA");
+                            menu.linha();
+                            ldt.espera();
+
+                            System.out.println("= Tarefas");
+                            menu.linha();
+                            ldt.espera();
+
+                            for(Tarefa tf : td.retornarTarefas())
+                            {
+                                System.out.println(" -Id: " + tf.getId());
+                                System.out.println("- Descrição: " + tf.getDescricao());
+                                System.out.println("- Prioridade(0 - Normal / 1 - Importante): " + tf.getPrioridade());
+                                System.out.println("- Status(0 - A Iniciar / 1 - Em andamento / 2 - Concluída): " + tf.getStatus());
+                                System.out.println("- Data de Conclusão: " + tf.getDataConclusao());
+                                menu.linha();
+                                ldt.espera();
+                            }
+                            System.out.print("Digite o Id da tarefa que deseja consultar: ");
+                            idConsult = ent.nextInt();
+                            ent.nextLine();
+                            menu.linha();
+                            ldt.espera();
+
+                            System.out.println("- Id: " + td.consultarTarefa(idConsult).getId());
+                            System.out.println("- Descricao: " + td.consultarTarefa(idConsult).getDescricao());
+                            System.out.println("- Prioridade(0 - Normal / 1 - Importante): " + td.consultarTarefa(idConsult).getPrioridade());
+                            System.out.println("- Status(0 - A Iniciar / 1 - Em andamento / 2 - Concluída): " + td.consultarTarefa(idConsult).getStatus());
+                            System.out.println("- Data de Conclusão: " + td.consultarTarefa(idConsult).getDataConclusao());
+                            menu.linha();
+                            ldt.espera();
+                            
+                            System.out.println("Deseja consultar mais alguma tarefa(S/N?");
+                            continuar = ent.nextLine().charAt(0);
+                            menu.linha();
+                            ldt.espera();
+                        } while (Character.toLowerCase(continuar) != 'n');
 
                         break;
                     }
@@ -169,12 +216,19 @@ public class ListaDeTarefas
                     }
                     case 5:
                     {
-
-                        break;
-                    }
-                    case 6:
-                    {
-
+                        System.out.println("= LISTA DE TAREFAS");
+                        menu.linha();
+                        ldt.espera();
+                        for(Tarefa tf : td.retornarTarefas())
+                        {
+                            System.out.println("- Id: " + tf.getId());
+                            System.out.println("- Descrição: " + tf.getDescricao());
+                            System.out.println("- Prioridade(0 - Normal / 1 - Importante): " + tf.getPrioridade());
+                            System.out.println("- Status(0 - A Iniciar / 1 - Em andamento / 2 - Concluída): " + tf.getStatus());
+                            System.out.println("- Data de Conclusão: " + tf.getDataConclusao());
+                            menu.linha();
+                            ldt.espera();
+                        }
                         break;
                     }
                     default:
@@ -183,10 +237,23 @@ public class ListaDeTarefas
                     }
                 }
                 
-                System.out.println("Deseja continuar usando o programa(S/N)? ");
-                continuar = ent.nextLine().charAt(0);
+                if(escolha != 6)
+                {
+                    System.out.println("Deseja continuar usando o programa(S/N)? ");
+                    continuar = ent.nextLine().charAt(0);
+                    menu.linha();
+                    ldt.espera();
+                }
+                else
+                {
+                    break;
+                }
 
             }while(Character.toLowerCase(continuar) != 'n');
+
+            System.out.println("Obrigado por usar o programa!");
+            menu.linha();
+            ldt.espera();
         } 
         catch (Exception e) {
             e.printStackTrace();        }
