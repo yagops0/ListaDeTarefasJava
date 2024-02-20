@@ -211,7 +211,201 @@ public class ListaDeTarefas
                     }
                     case 4:
                     {
+                        do
+                        {
+                            System.out.println("= FILTRAGEM");
+                            menu.linha();
+                            ldt.espera();
+                            menu.menuFiltrar();
+                            ldt.espera();
+                            System.out.print("Digite qual filtro quer escolher: ");
+                            escolhaFiltros = ent.nextInt();
+                            ent.nextLine();
 
+                            menu.linha();
+                            ldt.espera();
+
+                            switch(escolhaFiltros)
+                            {
+                                case 1:
+                                {
+                                    System.out.println("= FILTRAGEM POR PRIORIDADE");
+                                    menu.linha();
+                                    ldt.espera();
+                                    menu.menuFiltrarPrioridade();
+                                    ldt.espera();
+
+                                    System.out.print("- Digite qual  filtro quer: ");
+                                    escolhaPrioridade = ent.nextInt();
+                                    ent.nextLine();
+
+                                    menu.linha();
+                                    ldt.espera();
+
+                                    switch(escolhaPrioridade)
+                                    {
+                                        case 0:
+                                        {
+                                            System.out.println("= FILTRAGEM POR TAREFAS  NORMAIS");
+                                            menu.linha();
+                                            ldt.espera();
+
+                                            for(Tarefa tf : td.prioridadeFilter(escolhaPrioridade))
+                                            {
+                                                System.out.println("- Id: " + tf.getId());
+                                                System.out.println("- Descrição: " + tf.getDescricao());
+                                                System.out.println("- Prioridade: " + tf.getPrioridade());
+                                                System.out.println("- Status: " + tf.getStatus());
+                                                System.out.println("- Data de Conclusão: " + tf.getDataConclusao());
+                                                menu.linha();
+                                                ldt.espera();
+                                            }
+                                            break;
+                                        }
+                                        case 1:
+                                        {
+                                            System.out.println("= FILTRO POR TAREFAS  IMPORTANTE");
+                                            menu.linha();
+                                            ldt.espera();
+
+                                            for(Tarefa tf : td.prioridadeFilter(escolhaPrioridade))
+                                            {
+                                                System.out.println("- Id: " + tf.getId());
+                                                System.out.println("- Descrição: " + tf.getDescricao());
+                                                System.out.println("- Prioridade: " + tf.getPrioridade());
+                                                System.out.println("- Status: " + tf.getStatus());
+                                                System.out.println("- Data de Conclusão: " + tf.getDataConclusao());
+                                                menu.linha();
+                                                ldt.espera();
+                                            }
+                                            break;
+                                        }
+                                        default:
+                                        {
+                                            System.out.println("Opção Inválida. Por favor digite uma opção válida!");
+                                        }
+                                    }
+
+                                    break;
+                                }
+                                case 2:
+                                {
+                                    System.out.println("= FILTRAGEM POR STATUS");
+                                    menu.linha();
+                                    ldt.espera();
+
+                                    menu.menuFiltrarStatus();
+                                    ldt.espera();
+
+                                    System.out.print("Digite a opção que deseja: ");
+                                    escolhaStatus = ent.nextInt();
+                                    ent.nextLine();
+                                    menu.linha();
+                                    ldt.espera();
+
+                                    switch(escolhaStatus)
+                                    {
+                                        case 0:
+                                        {
+                                            System.out.println("= FILTRO POR TAREFAS A INICIAR");
+                                            menu.linha();
+                                            ldt.espera();
+
+                                            for(Tarefa tf : td.statusFilter(escolhaStatus))
+                                            {
+                                                System.out.println("- Id: " + tf.getId());
+                                                System.out.println("- Descrição: " + tf.getDescricao());
+                                                System.out.println("- Prioridade: " + tf.getPrioridade());
+                                                System.out.println("- Status: " + tf.getStatus());
+                                                System.out.println("- Data de Conclusão: " + tf.getDataConclusao());
+                                                menu.linha();
+                                                ldt.espera();
+                                            }
+                                            break;
+                                        }
+                                        case 1:
+                                        {
+                                            System.out.println("= FILTRO POR TAREFAS EM ANDAMENTO");
+                                            menu.linha();
+                                            ldt.espera();
+
+                                            for(Tarefa tf  : td.statusFilter(escolhaStatus))
+                                            {
+                                                System.out.println("- Id: " + tf.getId());
+                                                System.out.println("- Descrição: " + tf.getDescricao());
+                                                System.out.println("- Prioridade: " + tf.getPrioridade());
+                                                System.out.println("- Status: " + tf.getStatus());
+                                                System.out.println("- Data de Conclusão: " + tf.getDataConclusao());
+                                                menu.linha();
+                                                ldt.espera();
+                                            }
+                                            break;
+                                        }
+                                        case 2:
+                                        {
+                                            System.out.println("= FILTRO POR TAREFAS CONCLUÍDAS");
+                                            menu.linha();
+                                            ldt.espera();
+
+                                            for(Tarefa tf : td.statusFilter(escolhaStatus))
+                                            {
+                                                System.out.println("- Id: " + tf.getId());
+                                                System.out.println("- Descrição: " + tf.getDescricao());
+                                                System.out.println("- Prioridade: " + tf.getPrioridade());
+                                                System.out.println("- Status: " + tf.getStatus());
+                                                System.out.println("- Data de Conclusão: " + tf.getDataConclusao());
+                                                menu.linha();
+                                                ldt.espera();
+                                            }
+                                            break;
+                                        }
+                                        default:
+                                        {
+                                            System.out.println("Opção Inválida. Por favor digite uma opção válida!");
+                                        }
+                                    }
+                                    break;
+                                }
+                                case 3:
+                                {
+                                    System.out.println("= FILTRO POR TAREFAS MAIS ANTIGAS PARA MAIS RECENTES");
+                                    menu.linha();
+                                    ldt.espera();
+
+                                    for(Tarefa tf : td.dateFilter(escolhaFiltros))
+                                    {
+                                        System.out.println("- Id: " + tf.getId());
+                                        System.out.println("- Descrição: "  + tf.getDescricao());
+                                        System.out.println("- Prioridade: " + tf.getPrioridade());
+                                        System.out.println("- Status: " + tf.getStatus());
+                                        System.out.println("- Data de Conclusão: " + tf.getDataConclusao());
+                                        menu.linha();
+                                        ldt.espera();
+                                    }
+                                    
+                                    break;
+                                }
+                                case 4:
+                                {
+
+                                    break;
+                                }
+                                default:
+                                {
+                                    System.out.println("Opção Inválida. Por favor digite uma opção válida!");
+                                }
+                            }
+
+
+                            System.out.println("Deseja filtrar mais alguma coisa(S/N)?");
+                            continuar = ent.nextLine().charAt(0);
+                            menu.linha();
+                            ldt.espera();
+
+                        }while(Character.toLowerCase(continuar) != 'n');
+
+
+                        
                         break;
                     }
                     case 5:

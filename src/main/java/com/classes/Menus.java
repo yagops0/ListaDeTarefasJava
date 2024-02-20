@@ -20,7 +20,7 @@ public class Menus
 
     public void menuFiltrar()
     {
-        linha();
+        
         System.out.println("1 - Filtragem por prioridade.");
         System.out.println("2 - Filtragem por status.");
         System.out.println("3 - Filtrar por tarefas mais velhas à mais recentes.");
@@ -30,7 +30,6 @@ public class Menus
 
     public void menuFiltrarPrioridade()
     {
-        linha();
         System.out.println("0 - Ver tarefas com prioridade normal.");
         System.out.println("1 - Ver tarefas com prioridade importante.");
         linha();
@@ -38,7 +37,6 @@ public class Menus
 
     public void menuFiltrarStatus()
     {
-        linha();
         System.out.println("0 - Ver tarefas a iniciar.");
         System.out.println("1 - Ver tarefas em andamento.");
         System.out.println("2 - Ver tarefas concluídas.");
