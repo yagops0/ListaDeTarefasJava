@@ -264,7 +264,7 @@ public class ListaDeTarefas
                                         }
                                         case 1:
                                         {
-                                            System.out.println("= FILTRO POR TAREFAS  IMPORTANTE");
+                                            System.out.println("= FILTRO POR TAREFAS IMPORTANTE");
                                             menu.linha();
                                             ldt.espera();
 
@@ -387,6 +387,21 @@ public class ListaDeTarefas
                                 }
                                 case 4:
                                 {
+                                    System.out.println("= FILTRO POR TAREFAS MAIS RECENTES PARA MAIS ANTIGAS");
+                                    menu.linha();
+                                    ldt.espera();
+
+                                    for(Tarefa tf : td.dateFilter(escolhaFiltros))
+                                    {
+                                        System.out.println("- Id: " + tf.getId());
+                                        System.out.println("- Descrição: " + tf.getDescricao());
+                                        System.out.println("- Prioridade: " + tf.getPrioridade());
+                                        System.out.println("- Status: " + tf.getStatus());
+                                        System.out.println("- Datta de Conclusão: " + tf.getDataConclusao());
+                                        menu.linha();
+                                        ldt.espera();
+
+                                    }
 
                                     break;
                                 }
@@ -424,10 +439,6 @@ public class ListaDeTarefas
                             ldt.espera();
                         }
                         break;
-                    }
-                    default:
-                    {
-                        System.out.println("Por favor digite uma opção válida!");
                     }
                 }
                 
@@ -482,5 +493,3 @@ public class ListaDeTarefas
     }
 
 }
-
-

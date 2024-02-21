@@ -213,6 +213,7 @@ public class TarefaDAO
                     t.setDescricao(rst.getString("descricao"));
                     t.setPrioridade(rst.getInt("prioridade"));
                     t.setStatus(rst.getInt("status"));
+                    t.setDataConclusao(rst.getDate("dataConclusao"));
 
                     priorFilter.add(t);
 
@@ -416,7 +417,5 @@ public class TarefaDAO
             }
         }
     }
-
-
 
 }
